@@ -1,27 +1,40 @@
 <template>
-  <div v-if="!userStore.getters.isLoggedIn" class="d-grid gap-2 col-6 mx-auto">
-    <FormLogin />
+  <div id="nav">
+    <router-link to="/">Login</router-link> |
+    <router-link to="/about">Create User</router-link>
   </div>
-  <div v-else class="text-center">
-    <h2>Welcome, {{ userStore.state.name }}</h2>
-
-    <button class="btn btn-secondary" @click="userStore.logout()">
-      Logout
-    </button>
-  </div>
+  <router-view />
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted } from 'vue'
-import userStore from '@/store/user'
-import FormLogin from '@/components/FormLogin.vue'
-//import Counter from '@/components/Counter.vue' 
+import { defineComponent, provide } from "vue";
+import  store from "./store";
+
 export default defineComponent({
-  name: 'App',
-  components: { FormLogin },
   setup() {
-    onMounted(userStore.getUser)
-    return { userStore }
-  }
-})
+    provide("store", store);
+  },
+});
 </script>
+<style>
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
+
+#nav {
+  padding: 30px;
+}
+
+#nav a {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+#nav a.router-link-exact-active {
+  color: #42b983;
+}
+</style>
