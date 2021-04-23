@@ -2,8 +2,9 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
 require("dotenv").config();
+const cors = require("cors")
+app.use(cors());
 
-const PORT = 3000;
 
 app.get("/", (request, response) => {
   response.json({ info: "Node.js, Express, and Postgres API" });
@@ -16,11 +17,15 @@ app.use(
     extended: true,
   })
 );
+app.delete("/delCar", db.delCar);
 app.get("/cars", db.getCar);
 app.get("/persons", db.getPerson);
 app.post("/addcar", db.addCar);
-app.delete("/delCar", db.delCar);
+app.post('/login', db.login);
+app.post("/createUser", db.createUser);
 
+
+const PORT = 3000;
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`);
 });
