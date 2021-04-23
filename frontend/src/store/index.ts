@@ -17,9 +17,19 @@ const methods = {
     state.counter = +2;
   },
    
-  
-   
+
 };
+// const login = async (info) => {
+      
+//       const res = await axios.post(`${api}/login`, info.infoLogin);
+//       console.log(res.data.success);
+//       if (res.data.success == true) {
+        
+//         router.push("/home");
+//       }
+//     };
+
+
 
 export function getCars () {
     //  const options = {

@@ -5,7 +5,7 @@
     <button @click="store.methods.decreaseCounter">-</button>
     <section class="form">
       <input
-        v-model="state.infoLogin.username"
+        v-model="state.infoLogin.email"
         class="username"
         type="text"
         placeholder="username"
@@ -16,9 +16,9 @@
         type="password"
         placeholder="password"
       />
-      <button @click="login()">login </button>
+      <button @click="login()">login</button>
     </section>
-    <p>{{ state.infoLogin.username }}</p>
+    <p>{{ state.infoLogin.email }}</p>
     <p>{{ state.infoLogin.password }}</p>
     <article class="">
       <button @click="cars()">car</button>
@@ -35,7 +35,8 @@
 import axios from "axios";
 
 import { defineComponent, inject, reactive } from "vue";
-import { carsTypes, dataLogin } from "../types";
+import { carsTypes } from "../types";
+import { useRouter, useRoute } from "vue-router";
 export default defineComponent({
   name: "LoginForm",
   setup() {
@@ -43,10 +44,11 @@ export default defineComponent({
     const state = reactive({
       arrayCars: [] as carsTypes[],
       infoLogin: {
-        username: "",
+        email: "",
         password: "",
       },
     });
+    const router = useRouter();
     const api = "http://localhost:3000";
 
     const cars = async () => {
@@ -57,18 +59,24 @@ export default defineComponent({
         },
       };
       const res = await axios.get(`${api}/users`, options);
-      console.log(res.data);
+      console.log("data", res);
       state.arrayCars.push(res.data);
     };
     const login = async () => {
+      
       const res = await axios.post(`${api}/login`, state.infoLogin);
+      console.log(res.data.success);
+      if (res.data.success == true) {
+        
+        router.push("/home");
+      }
     };
 
     return {
       store,
       cars,
       state,
-      login
+      login,
     };
   },
 });
