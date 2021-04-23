@@ -14,7 +14,7 @@ const methods = {
     state.counter--;
   },
   increaseCounter () {
-    state.counter = +2;
+    state.counter ++;
   },
    
 

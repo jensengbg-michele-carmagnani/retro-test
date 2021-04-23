@@ -4,41 +4,35 @@
     <button @click="store.methods.increaseCounter">+</button>
     <button @click="store.methods.decreaseCounter">-</button>
     <section class="form">
+      <h1>User logins</h1>
       <input
-        v-model="state.infoLogin.email"
+        v-model="infoLogin.email"
         class="username"
         type="text"
         placeholder="username"
       />
       <input
-        v-model="state.infoLogin.password"
+        v-model="infoLogin.password"
         class="password"
         type="password"
         placeholder="password"
       />
       <button @click="login()">login</button>
     </section>
-    <p>{{ state.infoLogin.email }}</p>
-    <p>{{ state.infoLogin.password }}</p>
-    <article class="">
-      <button @click="cars()">car</button>
-    </article>
-    <h1>cars</h1>
-
-    <p v-for="car in state.arrayCars" :key="car.id">
-      {{ car.make }}
-    </p>
+    <p>{{ infoLogin.email }}</p>
+    <p>{{ infoLogin.password }}</p>
   </div>
 </template>
 
 <script lang="ts">
 import axios from "axios";
 
-import { defineComponent, inject, reactive } from "vue";
+import { defineComponent, inject, reactive, toRefs } from "vue";
 import { carsTypes } from "../types";
-import { useRouter, useRoute } from "vue-router";
+import { useRouter } from "vue-router";
 export default defineComponent({
   name: "LoginForm",
+  // reactive object available for the table
   setup() {
     const store = inject("store");
     const state = reactive({
@@ -51,31 +45,21 @@ export default defineComponent({
     const router = useRouter();
     const api = "http://localhost:3000";
 
-    const cars = async () => {
-      const options = {
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      };
-      const res = await axios.get(`${api}/users`, options);
-      console.log("data", res);
-      state.arrayCars.push(res.data);
-    };
+    // api for the login
     const login = async () => {
-      
       const res = await axios.post(`${api}/login`, state.infoLogin);
       console.log(res.data.success);
+      // check if pwd and email are correct
       if (res.data.success == true) {
-        
         router.push("/home");
+      } else {
+        alert("Password or username wrong!");
       }
     };
-
+    // to make available the object
     return {
       store,
-      cars,
-      state,
+      ...toRefs(state),
       login,
     };
   },

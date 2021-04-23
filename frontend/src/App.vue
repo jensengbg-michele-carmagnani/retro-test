@@ -1,7 +1,7 @@
 <template>
   <div id="nav">
     <router-link to="/">Login</router-link> |
-    <router-link to="/test">Create user</router-link>
+    <router-link to="/createuser">Create user</router-link>
   </div>
   <router-view />
 </template>
