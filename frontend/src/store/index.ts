@@ -1,12 +1,13 @@
 import { reactive } from "vue";
-import { dataLogin, counter, carsTypes } from '../types'
+import { dataLogin, counter, carsTypes, infoUser } from '../types'
 import axios from 'axios'
 
  const state = reactive({
    counter: 0 as counter,
    login: {} as dataLogin,
    api: 'http://localhost:3000',
-  cars : []  as carsTypes[]
+   cars: [] as carsTypes[],
+   infoUser :{} as infoUser
 });
 
 const methods = {

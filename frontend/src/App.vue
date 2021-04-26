@@ -1,18 +1,30 @@
 <template>
   <div id="nav">
-    <router-link to="/">Login</router-link> |
-    <router-link to="/createuser">Create user</router-link>
+   
   </div>
   <router-view />
 </template>
 
 <script lang="ts">
-import { defineComponent, provide } from "vue";
-import  store from "./store";
+import { defineComponent, provide, onBeforeMount } from "vue";
+import { useRouter, useRoute } from "vue-router";
+import firebase from "firebase";
+import store from "./store";
 
 export default defineComponent({
   setup() {
     provide("store", store);
+    const router = useRouter();
+    const route = useRoute();
+    onBeforeMount(() => {
+      firebase.auth().onAuthStateChanged((user) => {
+        if (!user) {
+          router.replace("/");
+        } else if (route.path == "/" || route.path == "/createuser") {
+          router.replace("/home");
+        }
+      });
+    });
   },
 });
 </script>
