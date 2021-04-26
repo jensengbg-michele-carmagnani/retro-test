@@ -40,7 +40,7 @@ export default defineComponent({
       const res = await axios.post(`${api}/createUser`, state.newUser);
       console.log(res.data);
       if (res.data.success == true) {
-        router.push("/home");
+        router.push("/");
       } else {
         alert(res.data.message);
       }

@@ -1,9 +1,6 @@
 <template>
   <div class="LoginForm">
-    <h1>{{ store.state.counter }}</h1>
-    <button @click="store.methods.increaseCounter">+</button>
-    <button @click="store.methods.decreaseCounter">-</button>
-    <section class="form">
+    <section>
       <h1>User logins</h1>
       <input
         v-model="infoLogin.email"
@@ -17,7 +14,7 @@
         type="password"
         placeholder="password"
       />
-      <button @click="Login()">login</button>
+      <button @click="login()">login</button>
       <section class="google-login">
         <p>Sign in with goole</p>
         <img
@@ -40,45 +37,24 @@ import { defineComponent, inject, reactive, ref, toRefs } from "vue";
 import { carsTypes, infoUser } from "../types";
 import { useRouter } from "vue-router";
 import firebase from "firebase";
+import {googleLogin} from "../modules/login";
 export default defineComponent({
   name: "LoginForm",
   // reactive object available for the table
   setup() {
-    
     const state = reactive({
       arrayCars: [] as carsTypes[],
       infoLogin: {
         email: "",
         password: "",
       },
-      results: {} as infoUser
-      
+      results: {} as infoUser,
     });
     const store = inject("store");
     const router = useRouter();
     const api = "http://localhost:3000";
     const Login = () => {
-      
-      const provider = new firebase.auth.GoogleAuthProvider();
-      provider.addScope("https://www.googleapis.com/auth/contacts.readonly"),
-        provider.addScope("");
-      firebase
-        .auth()
-        .signInWithPopup(provider)
-        .then((result) => {
-          let user = result.user;
-          //store.state.infoUser = user
-          console.log(JSON.stringify(user));
-          alert(
-            JSON.stringify(`Username is : ${user?.displayName}
-                             email is : ${user?.email}`)
-          );
-          router.replace("/home");
-        })
-        .catch((error) => {
-          alert(error.message);
-        });
-        
+      googleLogin();
     };
     // api for the login
     const login = async () => {
@@ -91,13 +67,13 @@ export default defineComponent({
         alert("Password or username wrong!");
       }
     };
+   
     //to make available the object
     return {
       store,
       ...toRefs(state),
       Login,
       login,
-      
     };
   },
 });
