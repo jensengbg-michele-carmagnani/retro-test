@@ -1,6 +1,6 @@
 <template>
-  <div class="LoginForm">
-    <section>
+  <div class="login-form">
+   
       <h1>User logins</h1>
       <input
         v-model="infoLogin.email"
@@ -23,8 +23,8 @@
           alt="Google login"
         />
       </section>
-      <router-link to="/createuser">Create user</router-link>
-    </section>
+      <router-link to="/createuser">Need an account ? </router-link>
+   
     <p>{{ infoLogin.email }}</p>
     <p>{{ infoLogin.password }}</p>
   </div>
@@ -81,6 +81,12 @@ export default defineComponent({
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.login-form{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column;
+}
 button {
   width: 3rem;
   height: 3rem;
@@ -113,5 +119,7 @@ li {
 }
 a {
   color: #42b983;
+  text-decoration: none;
+  font-size: 20px;
 }
 </style>
