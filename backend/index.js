@@ -3,6 +3,9 @@ const bodyParser = require("body-parser");
 const app = express();
 require("dotenv").config();
 const cors = require("cors")
+const helmet = require('helmet');
+
+app.use(helmet());
 app.use(cors());
 app.use(bodyParser.json());
 app.use(
@@ -15,6 +18,7 @@ app.use(
 // require modules
 const login = require("./routers/login")
 const createUser = require("./routers/createUser")
+const isLoggedin = require('./routers/isLoggedin')
 
 // endpoint
 //const db = require("./routers/queries");
@@ -23,6 +27,7 @@ const createUser = require("./routers/createUser")
 // routes 
 app.use('/login', login)
 app.use('/createUser', createUser)
+app.use('/isLoggedin', isLoggedin)
 
 //app.post("/createUser", db.createUser);
 

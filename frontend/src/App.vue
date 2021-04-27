@@ -1,7 +1,5 @@
 <template>
-  <div id="nav">
-   
-  </div>
+  <div id="nav"></div>
   <router-view />
 </template>
 
@@ -10,20 +8,34 @@ import { defineComponent, provide, onBeforeMount } from "vue";
 import { useRouter, useRoute } from "vue-router";
 import firebase from "firebase";
 import store from "./store";
+import axios from "axios";
 
 export default defineComponent({
   setup() {
     provide("store", store);
     const router = useRouter();
     const route = useRoute();
-    onBeforeMount(() => {
-      firebase.auth().onAuthStateChanged((user) => {
-        if (!user) {
-          router.replace("/");
-        } else if (route.path == "/" || route.path == "/createuser") {
-          router.replace("/home");
+    onBeforeMount(async () => {
+      const token = sessionStorage.getItem("piktroToken");
+      if (token) {
+        console.log('token')
+        const API = "http://localhost:3000";
+        const verifiedToken = await axios.get(`${API}/isLoggedin`, {
+          headers: {
+            authorization: `Bearer ${sessionStorage.getItem("piktroToken")}`,
+          },
         }
-      });
+        );
+        if (verifiedToken) router.replace('/home')
+      } else {
+        firebase.auth().onAuthStateChanged((user) => {
+          if (!user) {
+            router.replace("/");
+          } else if (route.path == "/" || route.path == "/createuser") {
+            router.replace("/home");
+          }
+        });
+      }
     });
   },
 });
@@ -48,6 +60,5 @@ export default defineComponent({
 
 #nav a.router-link-exact-active {
   color: #42b983;
-  
 }
 </style>

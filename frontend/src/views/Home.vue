@@ -1,7 +1,7 @@
 <template>
   <section>
     <h1>welcome to piktro</h1>
-    
+
     <button @click="SignOut">Sign out</button>
   </section>
 </template>
@@ -18,21 +18,28 @@ export default defineComponent({
     const route = useRoute();
 
     const SignOut = () => {
-      firebase
-        .auth()
-        .signOut()
-        .then(() => {
-          alert("Sign-out successful.");
+      const token = sessionStorage.getItem("piktroToken");
+      try {
+        if (token) {
+          sessionStorage.clear();
           router.replace("/");
-        })
-        .catch((error) => {
-          console.error(error);
-        });
+        } else {
+          firebase
+            .auth()
+            .signOut()
+            .then(() => {
+              alert("Sign-out successful.");
+              router.replace("/");
+            });
+        }
+      } catch (error) {
+        console.log(error);
+      }
     };
 
     return {
       SignOut,
-      store
+      store,
     };
   },
 });

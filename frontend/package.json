@@ -11,7 +11,10 @@
   "dependencies": {
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
+    "crypto-js": "^4.0.0",
     "firebase": "^8.4.2",
+    "helmet": "^4.5.0",
+    "jsonwebtoken": "^8.5.1",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0-0"
   },
@@ -23,8 +26,8 @@
     "@vue/cli-plugin-eslint": "~4.5.0",
     "@vue/cli-plugin-router": "~4.5.0",
     "@vue/cli-plugin-typescript": "~4.5.0",
-    "@vue/cli-plugin-unit-jest": "~4.5.0",
-    "@vue/cli-service": "~4.5.0",
+    "@vue/cli-plugin-unit-jest": "^4.5.12",
+    "@vue/cli-service": "^4.1.1",
     "@vue/compiler-sfc": "^3.0.0",
     "@vue/eslint-config-prettier": "^6.0.0",
     "@vue/eslint-config-typescript": "^7.0.0",

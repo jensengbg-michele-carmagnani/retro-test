@@ -1,5 +1,6 @@
 const { Router } = require("express");
 const router = new Router();
+const CryptoJS = require("crypto-js");
 
 const Pool = require("pg").Pool;
 const pool = new Pool({
@@ -28,18 +29,20 @@ router.post("/", (req, res) => {
       console.log("results ", results.rows[0]);
       // if the email is not used add user
       if (results.rows[0] == undefined) {
+        const ENCRYPTED_PW = CryptoJS.AES.encrypt(
+          req.body.password,
+          process.env.SECRET
+        ).toString();
         console.log("addUser stage", email, password);
         pool.query(
           "INSERT INTO users ( email, password ) VALUES ($1, $2)",
-          [email, password],
+          [email, ENCRYPTED_PW],
           (error, results) => {
             if (error) {
               console.log(error);
             }
-
             obj.success = true;
             obj.message = "You succefully crete the profile";
-            console.log("results", results);
             res.status(201).send(obj);
           }
         );

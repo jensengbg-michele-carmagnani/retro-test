@@ -1,30 +1,29 @@
 <template>
   <div class="login-form">
-   
-      <h1>User logins</h1>
-      <input
-        v-model="infoLogin.email"
-        class="username"
-        type="text"
-        placeholder="username"
+    <h1>User logins</h1>
+    <input
+      v-model="infoLogin.email"
+      class="username"
+      type="email"
+      placeholder="email"
+    />
+    <input
+      v-model="infoLogin.password"
+      class="password"
+      type="password"
+      placeholder="password"
+    />
+    <button @click="login()">login</button>
+    <section class="google-login">
+      <p>Sign in with goole</p>
+      <img
+        @click="Login"
+        src="../assets/google-logo64.png"
+        alt="Google login"
       />
-      <input
-        v-model="infoLogin.password"
-        class="password"
-        type="password"
-        placeholder="password"
-      />
-      <button @click="login()">login</button>
-      <section class="google-login">
-        <p>Sign in with goole</p>
-        <img
-          @click="Login"
-          src="../assets/google-logo64.png"
-          alt="Google login"
-        />
-      </section>
-      <router-link to="/createuser">Need an account ? </router-link>
-   
+    </section>
+    <router-link to="/createuser">Need an account ? </router-link>
+
     <p>{{ infoLogin.email }}</p>
     <p>{{ infoLogin.password }}</p>
   </div>
@@ -37,7 +36,7 @@ import { defineComponent, inject, reactive, ref, toRefs } from "vue";
 import { carsTypes, infoUser } from "../types";
 import { useRouter } from "vue-router";
 import firebase from "firebase";
-import {googleLogin} from "../modules/login";
+import { googleLogin } from "../modules/login";
 export default defineComponent({
   name: "LoginForm",
   // reactive object available for the table
@@ -62,12 +61,13 @@ export default defineComponent({
       console.log(res.data.success);
       // check if pwd and email are correct
       if (res.data.success == true) {
+        sessionStorage.setItem("piktroToken", res.data.token);
         router.push("/home");
       } else {
         alert("Password or username wrong!");
       }
     };
-   
+
     //to make available the object
     return {
       store,
@@ -81,8 +81,8 @@ export default defineComponent({
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.login-form{
-  display:flex;
+.login-form {
+  display: flex;
   align-items: center;
   justify-content: center;
   flex-flow: column;
@@ -102,6 +102,7 @@ button {
 .password,
 .username {
   margin: 0.5rem;
+  text-align: center;
 }
 .google-login {
   cursor: pointer;
