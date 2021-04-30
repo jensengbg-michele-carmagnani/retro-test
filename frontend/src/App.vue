@@ -1,5 +1,7 @@
 <template>
-  <div id="nav"></div>
+  <div id="nav">
+    <img src="./assets/piktrologo.svg">
+  </div>
   <router-view />
 </template>
 
