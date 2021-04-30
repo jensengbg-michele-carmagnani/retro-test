@@ -90,7 +90,8 @@ button {
   text-align: center;
   min-width: 70%;
   padding: .7rem;
-  border: 1px, white solid;
+  border: 1px white solid;
+  border-radius: 10px 0;
 }
 a {
   color: #000000b4;

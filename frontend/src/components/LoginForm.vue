@@ -118,6 +118,7 @@ button {
   min-width: 70%;
   padding: .7rem;
   border: 1px, white solid;
+  border-radius: 10px 0;
 }
 .google-login {
   cursor: pointer;

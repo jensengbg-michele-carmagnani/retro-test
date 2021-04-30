@@ -1,7 +1,9 @@
 <template>
   <section>
+    <article>
+      <img src="../assets/use.svg" alt="">
+    </article>
     <h1>welcome to piktro</h1>
-
     <button @click="SignOut">Sign out</button>
   </section>
 </template>
