@@ -1,6 +1,7 @@
 <template>
   <div class="login-form">
-    <h1>User logins</h1>
+    <h1>Login</h1>
+    <div class="login">
     <input
       v-model="infoLogin.email"
       class="username"
@@ -13,7 +14,7 @@
       type="password"
       placeholder="password"
     />
-    <button @click="login()">login</button>
+    <button @click="login()">Login</button>
     <section class="google-login">
       <p>Sign in with goole</p>
       <img
@@ -22,10 +23,8 @@
         alt="Google login"
       />
     </section>
-    <router-link to="/createuser">Need an account ? </router-link>
-
-    <p>{{ infoLogin.email }}</p>
-    <p>{{ infoLogin.password }}</p>
+    <router-link to="/createuser">Need an account?</router-link>
+    </div>
   </div>
 </template>
 
@@ -87,10 +86,20 @@ export default defineComponent({
   justify-content: center;
   flex-flow: column;
 }
+.login {
+ background-color: #61AEDB;
+   display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column;
+  padding:2rem; 
+  min-width: 50%;
+}
 button {
   width: 3rem;
   height: 3rem;
   margin: 2rem;
+  min-width: 75%;
   text-align: center;
 }
 .form {
@@ -103,9 +112,13 @@ button {
 .username {
   margin: 0.5rem;
   text-align: center;
+  min-width: 70%;
+  padding: .7rem;
+  border: 1px, white solid;
 }
 .google-login {
   cursor: pointer;
+  margin: 0;
 }
 h3 {
   margin: 40px 0 0;
@@ -119,8 +132,7 @@ li {
   margin: 0 10px;
 }
 a {
-  color: #42b983;
+  color: #000000b4;
   text-decoration: none;
-  font-size: 20px;
 }
 </style>

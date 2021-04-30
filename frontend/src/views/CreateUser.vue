@@ -1,19 +1,22 @@
 <template>
-  <div class="sign-up">
+  <div class="form">
     <h1>Sign up</h1>
-    <input
-      v-model="newUser.email"
-      class="username"
-      type="text"
-      placeholder="username"
-    />
-    <input
-      v-model="newUser.password"
-      class="password"
-      type="password"
-      placeholder="password"
-    />
-    <button @click="create()">Create</button>
+  
+    <div class="sign-up">
+      <input
+        v-model="newUser.email"
+        class="username"
+        type="text"
+        placeholder="username"
+      />
+      <input
+        v-model="newUser.password"
+        class="password"
+        type="password"
+        placeholder="password"
+      />
+      <button @click="create()">Create new user</button>
+    </div>
   </div>
 </template>
 
@@ -54,13 +57,35 @@ export default defineComponent({
 </script>
 
 <style>
+
 .sign-up {
+ background-color: #61AEDB;
+   display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column;
+  padding:2rem; 
+  min-width: 50%;
+}
+button {
+  width: 3rem;
+  height: 3rem;
+  margin: 2rem;
+  min-width: 75%;
+  text-align: center;
+}
+.form {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-flow: column;
 }
-input {
-  margin: 1rem;
+.password,
+.username {
+  margin: 0.5rem;
+  text-align: center;
+  min-width: 70%;
+  padding: .7rem;
+  border: 1px, white solid;
 }
 </style>

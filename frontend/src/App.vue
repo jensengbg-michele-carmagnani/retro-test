@@ -1,6 +1,6 @@
 <template>
   <div id="nav">
-    <img src="./assets/piktrologo.svg">
+    <img class="piktroimg" src="./assets/piktrologo.svg">
   </div>
   <router-view />
 </template>
@@ -49,18 +49,23 @@ export default defineComponent({
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  font-family: 'Open Sans', sans-serif;
 }
 
 #nav {
   padding: 30px;
+  display: flex;
+}
+.piktroimg {
+  max-width: 25%;
 }
 
 #nav a {
   font-weight: bold;
-  color: #2c3e50;
+  color: #000000;
 }
 
 #nav a.router-link-exact-active {
-  color: #42b983;
+  color: #000000;
 }
 </style>
