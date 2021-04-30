@@ -16,6 +16,7 @@
         placeholder="password"
       />
       <button @click="create()">Create new user</button>
+          <router-link to="/">Alredy have an account?</router-link>
     </div>
   </div>
 </template>
@@ -87,5 +88,9 @@ button {
   min-width: 70%;
   padding: .7rem;
   border: 1px, white solid;
+}
+a {
+  color: #000000b4;
+  text-decoration: none;
 }
 </style>
