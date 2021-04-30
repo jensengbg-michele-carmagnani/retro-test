@@ -69,6 +69,7 @@ export default defineComponent({
   flex-flow: column;
   padding:2rem; 
   min-width: 50%;
+  border-radius: 10px;
 }
 button {
   width: 3rem;

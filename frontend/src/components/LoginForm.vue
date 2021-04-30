@@ -85,9 +85,9 @@ export default defineComponent({
   align-items: center;
   justify-content: center;
   flex-flow: column;
-  background-image: url("../assets/dots.svg");
-  
+  background-image: url("../assets/dots.svg"); 
 }
+
 .login {
  background-color: #61AEDB;
    display: flex;
@@ -96,6 +96,7 @@ export default defineComponent({
   flex-flow: column;
   padding:2rem; 
   min-width: 50%;
+  border-radius: 10px;
 }
 button {
   width: 3rem;
