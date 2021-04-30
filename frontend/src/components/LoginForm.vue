@@ -80,6 +80,9 @@ export default defineComponent({
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+h1{
+  margin-bottom: 0;
+}
 .login-form {
   display: flex;
   align-items: center;
