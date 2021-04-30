@@ -16,14 +16,15 @@
     />
     <button @click="login()">Login</button>
     <section class="google-login">
-      <p>Sign in with goole</p>
+      <p>Sign in with:</p>
       <img
         @click="Login"
         src="../assets/google-logo64.png"
         alt="Google login"
       />
+      <router-link to="/createuser">Don´t have an account? Click here</router-link>
     </section>
-    <router-link to="/createuser">Need an account?</router-link>
+
     </div>
   </div>
 </template>
@@ -114,6 +115,10 @@ button {
   align-items: center;
   flex-flow: column;
 }
+img {
+  margin-left: 1rem;
+  margin-right: 2rem;
+}
 .password,
 .username {
   margin: 0.5rem;
@@ -126,6 +131,8 @@ button {
 .google-login {
   cursor: pointer;
   margin: 0;
+  display: flex;
+  justify-content: space-around;
 }
 h3 {
   margin: 40px 0 0;
@@ -141,5 +148,6 @@ li {
 a {
   color: #000000b4;
   text-decoration: none;
+  margin: 1rem;
 }
 </style>
