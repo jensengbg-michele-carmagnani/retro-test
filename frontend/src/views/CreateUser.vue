@@ -84,6 +84,9 @@ button {
   align-items: center;
   flex-flow: column;
 }
+h1{
+  margin-bottom: 0;
+}
 .password,
 .username {
   margin: 0.5rem;
