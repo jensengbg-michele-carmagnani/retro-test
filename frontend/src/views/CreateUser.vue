@@ -7,7 +7,7 @@
         v-model="newUser.email"
         class="username"
         type="text"
-        placeholder="username"
+        placeholder="email"
       />
       <input
         v-model="newUser.password"
@@ -58,7 +58,9 @@ export default defineComponent({
 </script>
 
 <style>
-
+.form {
+  background-image: url("../assets/dots.svg");
+}
 .sign-up {
  background-color: #61AEDB;
    display: flex;

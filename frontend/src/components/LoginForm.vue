@@ -85,6 +85,8 @@ export default defineComponent({
   align-items: center;
   justify-content: center;
   flex-flow: column;
+  background-image: url("../assets/dots.svg");
+  
 }
 .login {
  background-color: #61AEDB;
