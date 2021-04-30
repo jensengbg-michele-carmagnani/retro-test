@@ -90,6 +90,7 @@ h1{
   justify-content: center;
   flex-flow: column;
   background-image: url("../assets/dots.svg"); 
+  background-size: 95% 90% ;
 }
 
 .login {
