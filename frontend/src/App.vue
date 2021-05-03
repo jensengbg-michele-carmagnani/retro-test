@@ -1,6 +1,6 @@
 <template>
   <div id="nav">
-    <img class="piktroimg" src="./assets/piktrologo.svg">
+    <img class="piktroimg" src="./assets/piktrologo.svg" />
   </div>
   <router-view />
 </template>
@@ -20,15 +20,14 @@ export default defineComponent({
     onBeforeMount(async () => {
       const token = sessionStorage.getItem("piktroToken");
       if (token) {
-        console.log('token')
+        console.log("token");
         const API = "http://localhost:3000";
         const verifiedToken = await axios.get(`${API}/isLoggedin`, {
           headers: {
             authorization: `Bearer ${sessionStorage.getItem("piktroToken")}`,
           },
-        }
-        );
-        if (verifiedToken) router.replace('/home')
+        });
+        if (verifiedToken) router.replace("/home");
       } else {
         firebase.auth().onAuthStateChanged((user) => {
           if (!user) {
@@ -49,7 +48,7 @@ export default defineComponent({
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 
 #nav {
